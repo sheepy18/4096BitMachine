@@ -3,29 +3,28 @@
 
 namespace musical
 {
-  Tone::MilliSec Tone::quarterLength = 1;
+  Tone::MilliSec Tone::quarterLength = 1000;
 
   void Tone::play( uint8_t pin )
   {
     playForSec( noteLength, pin );
   }
   
-  void Tone::buildFrequency( uint8_t pin )
+  void Tone::buildFrequency( uint8_t pin, unsigned long wait )
   {
-    uint8_t wait = (freq / 2) + ( (int) freq % 2);
     digitalWrite( pin, HIGH );
-    delay( wait );
+    delay( wait / 2 );
     digitalWrite( pin, LOW );
-    delay( wait );
+    delay( wait / 2 );
   }
   
   void Tone::playForSec( MilliSec maxS, uint8_t pin )
   {
-    unsigned long start = millis();
+     unsigned long wait = ( 1 / freq) * 1000;
 
-    while( millis() - start <= maxS )
+    for( unsigned long i = 0; i <= maxS; i = i + wait )
     {
-      buildFrequency( pin );
+      buildFrequency( pin, wait );
     }
     delay( interrupt );
   }

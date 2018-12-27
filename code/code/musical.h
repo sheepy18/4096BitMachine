@@ -29,10 +29,8 @@ namespace musical
       MilliSec interrupt; 
 
       void playForSec( MilliSec MaxS, uint8_t pin );
-      void buildFrequency( uint8_t pin );
-      
-  };
-  
+      void buildFrequency( uint8_t pin, unsigned long wait );  
+  }; 
 }
 
 #endif
