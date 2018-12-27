@@ -28,6 +28,22 @@ namespace musical
     }
     delay( interrupt );
   }
+
+  void Tone::play( uint8_t pin, Tone* parallelTones, uint8_t parallelTonesNum )
+  {
+    playForSec( noteLength * quarterLength, pin, parallelTones, parallelTonesNum );
+  }
+  
+  void Tone::playForSec( const MilliSec maxS, const uint8_t pin, Tone* parallelTones, uint8_t parallelTonesNum )
+  {
+     const unsigned long wait = ( 1 / freq) * 1000;
+
+    for( unsigned long i = 0; i <= maxS - interrupt; i = i + wait )
+    {
+      buildFrequency( pin, wait );
+    }
+    delay( interrupt );
+  }
   
   void Tone::change( const Tone::Hz fr, const Tone::Volt am, const Tone::MilliSec in, MilliSec nLength )
   {

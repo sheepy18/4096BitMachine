@@ -23,7 +23,10 @@ namespace musical
       
       void change( const Hz fr, const Volt am, const MilliSec in, MilliSec nLength );
       void play( const uint8_t pin );
-
+     
+      //multiple tones parallel
+      void play( const uint8_t pin, Tone* parallelTones, uint8_t parallelTonesNum);
+      
       Hz getFreq() { return freq; }
       Volt getAmp() { return amp; }
       MilliSec getNoteLength() { return noteLength; }
@@ -36,6 +39,9 @@ namespace musical
       MilliSec interrupt; 
 
       void playForSec( const MilliSec MaxS, const uint8_t pin );
+      
+      //multiple tones parallel
+      void playForSec( const MilliSec MaxS, const uint8_t pin, Tone* parallelTones, uint8_t parallelTonesNum );
       void buildFrequency( const uint8_t pin, const unsigned long wait );  
   };
 
